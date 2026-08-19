@@ -44,3 +44,10 @@ export function buildWhatsAppUrl(intent: WhatsAppIntent = "generic"): string {
   const base = number ? `https://wa.me/${number}` : "https://wa.me/";
   return `${base}?text=${text}`;
 }
+
+export function buildWhatsAppUrlWithText(message: string): string {
+  const text = encodeURIComponent(message);
+  const number = getWhatsAppNumber();
+  const base = number ? `https://wa.me/${number}` : "https://wa.me/";
+  return `${base}?text=${text}`;
+}
