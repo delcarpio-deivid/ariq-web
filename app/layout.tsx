@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Outfit, Plus_Jakarta_Sans } from "next/font/google";
+import { AriqChatWidget } from "@/components/ui/AriqChatWidget";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -29,7 +30,10 @@ export default function RootLayout({
       lang="es-PE"
       className={`${outfit.variable} ${plusJakarta.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <AriqChatWidget />
+      </body>
     </html>
   );
 }

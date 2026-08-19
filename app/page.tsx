@@ -21,6 +21,18 @@ export default function Home() {
           </span>
         </div>
       </div>
+      <section
+        id="precios"
+        className="mt-24 w-full max-w-xl scroll-mt-24 text-center"
+      >
+        <p className="font-heading text-xl font-semibold text-brand-primary">
+          Precios
+        </p>
+        <p className="mt-2 font-body text-sm text-brand-text">
+          Básico S/ 600 · Pro S/ 900 · Enterprise S/ 1,350. Mensual S/ 79 / S/
+          149 / S/ 249. Tabla completa en la siguiente fase.
+        </p>
+      </section>
     </main>
   );
 }
