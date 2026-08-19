@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  path-guard:
+    name: Block internal paths
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fail if forbidden paths are tracked
+        run: |
+          set -euo pipefail
+          FORBIDDEN=$(
+            git ls-files \
+              | grep -E '^(docs/|\.cursor/|AGENTS\.md|\.env$|\.env\.[^/]+$)' \
+              || true
+          )
+          PEN_FILES=$(git ls-files '*.pen' || true)
+          if [ -n "$FORBIDDEN" ] || [ -n "$PEN_FILES" ]; then
+            echo "::error::Forbidden paths tracked in git:"
+            echo "$FORBIDDEN"
+            echo "$PEN_FILES"
+            exit 1
+          fi
+          echo "Path guard passed — no internal files tracked."
+
+  lint-typecheck-build:
+    name: Lint, typecheck & build
+    runs-on: ubuntu-latest
+    needs: path-guard
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm build

@@ -1,0 +1,51 @@
+# Internal documentation — never commit
+docs/
+
+# Design files (PenDev)
+design/
+*.pen
+
+# Agent / AI tooling — local only
+.cursor/
+.claude/
+.agents/
+AGENTS.md
+CLAUDE.md
+
+# Environment secrets
+.env
+.env.*
+!.env.example
+
+# Agent session logs
+.cursor/logs/
+**/.cursor/logs/
+
+# Dependencies & build
+node_modules/
+.next/
+out/
+dist/
+build/
+
+# OS & editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Debug & test
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+coverage/
+.turbo/
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
