@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "motion/react";
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes } from "react";
 
 type ButtonVariant = "primary" | "secondary";
@@ -16,30 +19,66 @@ const variantClasses: Record<ButtonVariant, string> = {
 };
 
 const baseClasses =
-  "inline-flex min-h-11 items-center justify-center rounded-xl px-6 font-body text-base font-medium transition-opacity focus-visible:outline-none focus-visible:ring-2";
+  "inline-flex min-h-11 items-center justify-center rounded-xl px-6 font-body text-base font-medium shadow-sm focus-visible:outline-none focus-visible:ring-2";
+
+const motionInteraction = {
+  whileHover: { scale: 1.02, boxShadow: "0 4px 14px rgba(37, 99, 235, 0.15)" },
+  whileTap: { scale: 0.98 },
+  transition: { type: "spring" as const, stiffness: 400, damping: 25 },
+};
 
 type ButtonProps = SharedProps &
   ButtonHTMLAttributes<HTMLButtonElement> & { href?: never };
 
 type LinkButtonProps = SharedProps &
-  AnchorHTMLAttributes<HTMLAnchorElement> & { href: string };
+  Pick<
+    AnchorHTMLAttributes<HTMLAnchorElement>,
+    "target" | "rel" | "aria-label" | "onClick" | "id"
+  > & {
+    href: string;
+  };
 
 export function Button(props: ButtonProps | LinkButtonProps) {
-  const { variant = "primary", className = "", children, ...rest } = props;
+  const { variant = "primary", className = "", children } = props;
   const classes = `${baseClasses} ${variantClasses[variant]} ${className}`.trim();
 
   if ("href" in props && props.href) {
-    const { href, ...anchorRest } = rest as LinkButtonProps;
+    const { href, target, rel, "aria-label": ariaLabel, onClick, id } = props;
     return (
-      <a href={href} className={classes} {...anchorRest}>
+      <motion.a
+        href={href}
+        target={target}
+        rel={rel}
+        aria-label={ariaLabel}
+        onClick={onClick}
+        id={id}
+        className={classes}
+        {...motionInteraction}
+      >
         {children}
-      </a>
+      </motion.a>
     );
   }
 
+  const {
+    type = "button",
+    disabled,
+    "aria-label": ariaLabel,
+    onClick,
+    id,
+  } = props as ButtonProps;
+
   return (
-    <button type="button" className={classes} {...(rest as ButtonProps)}>
+    <motion.button
+      type={type}
+      disabled={disabled}
+      aria-label={ariaLabel}
+      onClick={onClick}
+      id={id}
+      className={classes}
+      {...motionInteraction}
+    >
       {children}
-    </button>
+    </motion.button>
   );
 }
