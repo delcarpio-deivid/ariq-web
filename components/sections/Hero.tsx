@@ -1,4 +1,6 @@
 import { Button } from "@/components/ui/Button";
+import { HeroBackground } from "@/components/sections/HeroBackground";
+import { HeroIsotipo } from "@/components/sections/HeroIsotipo";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
 export function Hero() {
@@ -6,15 +8,7 @@ export function Hero() {
 
   return (
     <section className="relative overflow-hidden bg-brand-bg px-4 py-16 sm:px-6 sm:py-24">
-      <div
-        className="pointer-events-none absolute -top-24 right-0 size-64 rounded-full bg-brand-secondary/10 blur-3xl"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute -bottom-16 left-0 size-48 rounded-full bg-brand-accent/10 blur-3xl"
-        aria-hidden
-      />
-
+      <HeroBackground />
       <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
         <div className="space-y-6 text-center lg:text-left">
           <p className="font-body text-sm uppercase tracking-widest text-brand-secondary">
@@ -47,18 +41,7 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="flex justify-center lg:justify-end">
-          <div className="relative flex size-56 items-center justify-center rounded-3xl bg-white shadow-md ring-1 ring-brand-primary/10 sm:size-72">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/brand/ariq-isotipo.svg"
-              alt="Isotipo ARIQ Labs"
-              className="size-40 sm:size-52"
-              width={208}
-              height={208}
-            />
-          </div>
-        </div>
+        <HeroIsotipo />
       </div>
     </section>
   );

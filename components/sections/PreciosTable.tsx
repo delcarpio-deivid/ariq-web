@@ -49,7 +49,7 @@ export function PreciosTable({ packages }: PreciosTableProps) {
                   ) : null}
                 </div>
 
-                <p className="font-body text-sm text-brand-text/70 line-through">
+                <p className="font-body text-sm text-brand-text/80 line-through">
                   S/ {formatSoles(pkg.listPrice)}
                 </p>
                 <p className="font-heading text-3xl font-bold text-brand-primary">
@@ -90,7 +90,7 @@ export function PreciosTable({ packages }: PreciosTableProps) {
           ))}
         </ul>
 
-        <p className="mt-8 text-center font-body text-xs text-brand-text/70">
+        <p className="mt-8 text-center font-body text-xs text-brand-text/80">
           Oferta de lanzamiento por tiempo limitado. Mensualidades no incluidas
           en el descuento del −25%.
         </p>

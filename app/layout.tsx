@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Outfit, Plus_Jakarta_Sans } from "next/font/google";
+import { MotionProvider } from "@/components/MotionProvider";
 import { AriqChatWidget } from "@/components/ui/AriqChatWidget";
 import { getLocalBusinessJsonLd, getSiteUrl } from "@/lib/seo";
 import "./globals.css";
@@ -69,7 +70,7 @@ export default function RootLayout({
         >
           Saltar al contenido
         </a>
-        {children}
+        <MotionProvider>{children}</MotionProvider>
         <AriqChatWidget />
       </body>
     </html>
