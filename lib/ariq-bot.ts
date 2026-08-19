@@ -1,3 +1,9 @@
+import {
+  formatLaunchPrice,
+  formatMonthly,
+  formatPricesSummary,
+  getPackageById,
+} from "./packages";
 import type { WhatsAppIntent } from "./whatsapp";
 
 export type ChatRole = "bot" | "user";
@@ -108,7 +114,7 @@ export const BOT_NODES: Record<string, BotNode> = {
   },
   prices: {
     id: "prices",
-    text: "Precios en soles (PEN). Implementación con Socios Fundadores −25%: Básico S/ 600, Pro S/ 900, Enterprise S/ 1,350. Mensualidad: S/ 79 / S/ 149 / S/ 249. El descuento aplica al pago único, no a la mensualidad. 5 cupos.",
+    text: `Precios en soles (PEN). Implementación con Socios Fundadores −25%: ${formatPricesSummary()} El descuento aplica al pago único, no a la mensualidad. 5 cupos.`,
     replies: [
       { id: "price-basico", label: "Elegir Básico", next: "price-basico" },
       { id: "price-pro", label: "Elegir Pro", next: "price-pro" },
@@ -119,7 +125,7 @@ export const BOT_NODES: Record<string, BotNode> = {
   },
   "price-basico": {
     id: "price-basico",
-    text: "Básico: web express, SEO local, bot WhatsApp y POS básico. Implementación S/ 600 + S/ 79/mes. Te pasamos al equipo por WhatsApp para armar la propuesta.",
+    text: `Básico: web express, SEO local, bot WhatsApp y POS básico. Implementación ${formatLaunchPrice(getPackageById("basico")!.launchPrice)} + ${formatMonthly(getPackageById("basico")!.monthly)}. Te pasamos al equipo por WhatsApp para armar la propuesta.`,
     replies: [
       { id: "basico-wa", label: "Continuar en WhatsApp", next: "wa-basico" },
       { id: "basico-back", label: "Ver otros paquetes", next: "prices" },
@@ -128,7 +134,7 @@ export const BOT_NODES: Record<string, BotNode> = {
   },
   "price-pro": {
     id: "price-pro",
-    text: "Pro (recomendado): web catálogo, bot IA para pedidos y ERP (POS + inventario). Implementación S/ 900 + S/ 149/mes. ¿Hablamos por WhatsApp?",
+    text: `Pro (recomendado): web catálogo, bot IA para pedidos y ERP (POS + inventario). Implementación ${formatLaunchPrice(getPackageById("pro")!.launchPrice)} + ${formatMonthly(getPackageById("pro")!.monthly)}. ¿Hablamos por WhatsApp?`,
     replies: [
       { id: "pro-wa", label: "Continuar en WhatsApp", next: "wa-pro" },
       { id: "pro-back", label: "Ver otros paquetes", next: "prices" },
@@ -137,7 +143,7 @@ export const BOT_NODES: Record<string, BotNode> = {
   },
   "price-enterprise": {
     id: "price-enterprise",
-    text: "Enterprise: e-commerce, bot IA texto/voz, ERP multisucursal y soporte prioritario. Implementación S/ 1,350 + S/ 249/mes. El equipo te arma la propuesta por WhatsApp.",
+    text: `Enterprise: e-commerce, bot IA texto/voz, ERP multisucursal y soporte prioritario. Implementación ${formatLaunchPrice(getPackageById("enterprise")!.launchPrice)} + ${formatMonthly(getPackageById("enterprise")!.monthly)}. El equipo te arma la propuesta por WhatsApp.`,
     replies: [
       { id: "ent-wa", label: "Continuar en WhatsApp", next: "wa-enterprise" },
       { id: "ent-back", label: "Ver otros paquetes", next: "prices" },
