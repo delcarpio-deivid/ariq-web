@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { AriqIsotipoSvg } from "@/lib/brand-isotipo";
 
 export const alt = "ARIQ Labs — Automatiza WhatsApp y SEO Local en Arequipa";
 export const size = { width: 1200, height: 630 };
@@ -27,19 +28,7 @@ export default function OpenGraphImage() {
             marginBottom: "40px",
           }}
         >
-          <svg
-            width="80"
-            height="80"
-            viewBox="0 0 120 120"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path fill="#0B0F19" d="M18 14h28v8H34v12h-8V22H18V14z" />
-            <path fill="#0B0F19" d="M74 14h28v8H86v12h-8V22H74V14z" />
-            <path fill="#0B0F19" d="M38 38h22v28L38 66V38z" />
-            <path fill="#10B981" d="M60 38h22l-22 28V38z" />
-            <circle cx="60" cy="78" r="5" fill="#10B981" />
-          </svg>
+          <AriqIsotipoSvg width={80} height={80} />
           <span
             style={{
               fontSize: 56,
