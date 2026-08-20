@@ -39,6 +39,10 @@ export type RateLimitResult =
   | { allowed: false; retryAfterSeconds: number };
 
 export function checkRateLimit(ip: string): RateLimitResult {
+  if (process.env.RATE_LIMIT_DISABLED === "true") {
+    return { allowed: true };
+  }
+
   const now = Date.now();
   pruneExpired(now);
 
