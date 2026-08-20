@@ -1,0 +1,36 @@
+meta {
+  name: Invalid paquete value
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/api/lead
+  body: json
+  auth: none
+}
+
+headers {
+  content-type: application/json
+}
+
+body:json {
+  {
+    "nombre": "Test User",
+    "telefono": "987654321",
+    "paquete": "premium"
+  }
+}
+
+tests {
+  test("returns 400 Bad Request", function() {
+    expect(res.status).to.equal(400);
+  });
+
+  test("reports paquete enum error", function() {
+    expect(res.body.errors).to.be.an("array");
+    const paqueteError = res.body.errors.find((e) => e.field === "paquete");
+    expect(paqueteError).to.exist;
+    expect(paqueteError.message).to.include("Paquete inválido");
+  });
+}

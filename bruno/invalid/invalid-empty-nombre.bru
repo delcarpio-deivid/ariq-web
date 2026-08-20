@@ -1,0 +1,36 @@
+meta {
+  name: Invalid empty nombre after sanitize
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{baseUrl}}/api/lead
+  body: json
+  auth: none
+}
+
+headers {
+  content-type: application/json
+}
+
+body:json {
+  {
+    "nombre": "   ",
+    "telefono": "987654321",
+    "paquete": "pro"
+  }
+}
+
+tests {
+  test("returns 400 Bad Request", function() {
+    expect(res.status).to.equal(400);
+  });
+
+  test("reports empty nombre after sanitize", function() {
+    expect(res.body.errors).to.be.an("array");
+    const nombreError = res.body.errors.find((e) => e.field === "nombre");
+    expect(nombreError).to.exist;
+    expect(nombreError.message).to.include("nombre");
+  });
+}

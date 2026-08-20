@@ -1,0 +1,36 @@
+meta {
+  name: Valid phone E164 Peru
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/api/lead
+  body: json
+  auth: none
+}
+
+headers {
+  content-type: application/json
+}
+
+body:json {
+  {
+    "nombre": "Pedro Sánchez",
+    "telefono": "+51987654321",
+    "paquete": "pro"
+  }
+}
+
+tests {
+  test("returns 202 Accepted", function() {
+    expect(res.status).to.equal(202);
+  });
+
+  test("accepts +51 E.164 phone format", function() {
+    expect(res.body.whatsappUrl).to.be.a("string");
+    const decoded = decodeURIComponent(res.body.whatsappUrl);
+    expect(decoded).to.include("Pedro Sánchez");
+    expect(decoded).to.include("+51987654321");
+  });
+}

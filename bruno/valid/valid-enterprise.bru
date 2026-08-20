@@ -1,0 +1,37 @@
+meta {
+  name: Valid Enterprise
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/api/lead
+  body: json
+  auth: none
+}
+
+headers {
+  content-type: application/json
+}
+
+body:json {
+  {
+    "nombre": "Ana Torres",
+    "telefono": "998877665",
+    "paquete": "enterprise",
+    "negocio": "Ferretería Sur"
+  }
+}
+
+tests {
+  test("returns 202 Accepted", function() {
+    expect(res.status).to.equal(202);
+  });
+
+  test("includes whatsappUrl with paquete Enterprise", function() {
+    expect(res.body.whatsappUrl).to.be.a("string");
+    const decoded = decodeURIComponent(res.body.whatsappUrl);
+    expect(decoded).to.include("Ana Torres");
+    expect(decoded).to.include("paquete Enterprise");
+  });
+}
