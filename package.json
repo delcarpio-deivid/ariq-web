@@ -7,7 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:api": "node scripts/verify-malformed-json.mjs && node scripts/bruno-run.mjs --disable-rate-limit valid invalid other",
+    "test:api:rate-limit": "node scripts/bruno-run.mjs rate-limit"
   },
   "dependencies": {
     "lucide-react": "1.32.0",
@@ -18,10 +22,12 @@
     "zod": "4.4.3"
   },
   "devDependencies": {
+    "@playwright/test": "^1.62.1",
     "@tailwindcss/postcss": "4.3.3",
     "@types/node": "20.19.43",
     "@types/react": "19.2.18",
     "@types/react-dom": "19.2.4",
+    "@usebruno/cli": "^4.0.0",
     "eslint": "9.39.5",
     "eslint-config-next": "16.3.1",
     "tailwindcss": "4.3.3",
