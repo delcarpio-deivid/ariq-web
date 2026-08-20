@@ -19,7 +19,7 @@ const variantClasses: Record<ButtonVariant, string> = {
 };
 
 const baseClasses =
-  "inline-flex min-h-11 items-center justify-center rounded-xl px-6 font-body text-base font-medium shadow-sm focus-visible:outline-none focus-visible:ring-2";
+  "inline-flex min-h-[44px] items-center justify-center rounded-xl px-6 py-3 font-body text-base font-medium shadow-sm focus-visible:outline-none focus-visible:ring-2";
 
 const motionInteraction = {
   whileHover: { scale: 1.02, boxShadow: "0 4px 14px rgba(37, 99, 235, 0.15)" },
@@ -53,6 +53,7 @@ export function Button(props: ButtonProps | LinkButtonProps) {
         onClick={onClick}
         id={id}
         className={classes}
+        style={{ minHeight: 44 }}
         {...motionInteraction}
       >
         {children}
@@ -76,6 +77,7 @@ export function Button(props: ButtonProps | LinkButtonProps) {
       onClick={onClick}
       id={id}
       className={classes}
+      style={{ minHeight: 44 }}
       {...motionInteraction}
     >
       {children}
