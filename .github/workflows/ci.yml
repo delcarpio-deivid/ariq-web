@@ -19,6 +19,7 @@ jobs:
           FORBIDDEN=$(
             git ls-files \
               | grep -E '^(docs/|\.cursor/|AGENTS\.md|\.env$|\.env\.[^/]+$)' \
+              | grep -vxF '.env.example' \
               || true
           )
           PEN_FILES=$(git ls-files '*.pen' || true)
