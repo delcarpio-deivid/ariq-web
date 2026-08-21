@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  axios: 1.18.0
+  form-data: 4.0.6
+  nanoid@^3: 3.3.18
+
 importers:
 
   .:
@@ -1331,6 +1336,10 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
+  agent-base@6.0.2:
+    resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
+    engines: {node: '>= 6.0.0'}
+
   agent-base@7.1.4:
     resolution: {integrity: sha512-MnA+YT8fwfJPgBx3m60MNqakm30XOkyIoH1y6huTQvC0PwZG7ki8NacLBcrPbNoo8vEZy7Jpuk7+jMO+CUovTQ==}
     engines: {node: '>= 14'}
@@ -1437,7 +1446,7 @@ packages:
     resolution: {integrity: sha512-BlpjvRWiOi52k8bCeoSCTe5jKQQdSqAN18x07WR8sZghzGW6tvtuepz+72pPvImI2vCn2F5HiyLvOVAVjoha+g==}
     engines: {node: '>=16'}
     peerDependencies:
-      axios: '>=1.6.0'
+      axios: 1.18.0
 
   aws4@1.13.2:
     resolution: {integrity: sha512-lHe62zvbTB5eEABUVi/AwVh0ZKY9rMMDhmm+eeyuuUQbQ3+J+fONVQOZyj+DdrvD4BY33uYniyRJ4UJIaSKAfw==}
@@ -1449,8 +1458,8 @@ packages:
   axios-ntlm@1.4.6:
     resolution: {integrity: sha512-4nR5cbVEBfPMTFkd77FEDpDuaR205JKibmrkaQyNwGcCx0szWNpRZaL0jZyMx4+mVY2PXHjRHuJafv9Oipl0Kg==}
 
-  axios@1.16.0:
-    resolution: {integrity: sha512-6hp5CwvTPlN2A31g5dxnwAX0orzM7pmCRDLnZSX772mv8WDqICwFjowHuPs04Mc8deIld1+ejhtaMn5vp6b+1w==}
+  axios@1.18.0:
+    resolution: {integrity: sha512-E32NzpYKp++W7XRe52rHiXV2ehxmh3wbdgO7MHeFM+vqxLBYHzt0ElkiImtOBxtOmyp0yoC8C6uESVV84Y2/hw==}
 
   axobject-query@4.1.0:
     resolution: {integrity: sha512-qIj0G9wZbMGNLjLmg1PT6v2mE9AH2zlnADJD/2tC6E00hgmhUOfEB6greHPAfLRSufHqROIUTkw6E+M3lH0PTQ==}
@@ -2010,10 +2019,6 @@ packages:
     resolution: {integrity: sha512-dKx12eRCVIzqCxFGplyFKJMPvLEWgmNtUrpTiJIR5u97zEhRG8ySrtboPHZXx7daLxQVrl643cTzbab2tkQjxg==}
     engines: {node: '>= 0.4'}
 
-  form-data@4.0.4:
-    resolution: {integrity: sha512-KrGhL9Q4zjj0kiUt5OO4Mr/A/jlI2jDYs5eHBpYHPcBEVSiipAvn2Ko2HnPe20rmcuuvMHNdZFp+4IlGTMF0Ow==}
-    engines: {node: '>= 6'}
-
   form-data@4.0.6:
     resolution: {integrity: sha512-vKatAh4SlVfgbv+YtmhiRjhEMJsYpsG1Y2rMQtR+SVSbytsSD1YGzDIcrAJmdFec88u/+VoGmxnl+80gL1tRCQ==}
     engines: {node: '>= 6'}
@@ -2165,6 +2170,10 @@ packages:
   http-proxy-agent@7.0.2:
     resolution: {integrity: sha512-T1gkAiYYDWYx3V5Bmyu7HcfcvL7mUrTWiM6yOfa3PIphViJ/gFPbvidQ+veqSOHci/PxBcDabeUNCzpOODJZig==}
     engines: {node: '>= 14'}
+
+  https-proxy-agent@5.0.1:
+    resolution: {integrity: sha512-dFcAjpTQFgoLMzC2VwU+C/CbS7uRL0lWmxDITmqm7C+7F0Odmj6s9l6alZc6AELXhrnggM2CeWSXHGOdX2YtwA==}
+    engines: {node: '>= 6'}
 
   https-proxy-agent@7.0.6:
     resolution: {integrity: sha512-vK9P5/iUfdl95AI+JVyUuIcVtd4ofvtrOr3HNtM2yxC9bnMbEdp3x01OhQNnjb8IJYi38VlTE3mBXwcfvywuSw==}
@@ -2663,11 +2672,6 @@ packages:
 
   nanoid@3.3.18:
     resolution: {integrity: sha512-DTg4MJbGMWkfi6VZFdNt2/caMbQy4Ou+Op/hJQvGEWcnVfoA1QA+xzRKAzw9jD6+GVOOeYr/mIcuDSdug6F6+w==}
-    engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
-    hasBin: true
-
-  nanoid@3.3.8:
-    resolution: {integrity: sha512-WNLf5Sd8oZxOm+TzppcYk8gVOgP+l58xNy58D0nbUnOxOWRWvlcCV4kUF7ltmI6PsrLl/BgKEyS4mqsGChFN0w==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
@@ -4949,19 +4953,19 @@ snapshots:
       '@usebruno/common': 0.24.0
       '@usebruno/converters': 0.22.0(supports-color@7.2.0)
       '@usebruno/filestore': 0.11.0
-      '@usebruno/js': 0.50.0(debug@4.4.3(supports-color@7.2.0))
+      '@usebruno/js': 0.50.0(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0)
       '@usebruno/lang': 0.38.0
       '@usebruno/requests': 0.19.0(supports-color@7.2.0)
-      aws4-axios: 3.4.0(axios@1.16.0(debug@4.4.3(supports-color@7.2.0)))
-      axios: 1.16.0(debug@4.4.3(supports-color@7.2.0))
-      axios-ntlm: 1.4.6(debug@4.4.3(supports-color@7.2.0))
+      aws4-axios: 3.4.0(axios@1.18.0(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0))
+      axios: 1.18.0(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0)
+      axios-ntlm: 1.4.6(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0)
       chai: 4.5.0
       chalk: 3.0.0
       cli-table3: 0.6.5
       csv-parse: 5.6.0
       debug: 4.4.3(supports-color@7.2.0)
       decomment: 0.9.5
-      form-data: 4.0.4
+      form-data: 4.0.6
       fs-extra: 10.1.0
       http-proxy-agent: 7.0.2(supports-color@7.2.0)
       https-proxy-agent: 7.0.6(supports-color@7.2.0)
@@ -4988,7 +4992,7 @@ snapshots:
       js-yaml: 4.3.1
       jscodeshift: 17.4.0(supports-color@7.2.0)
       lodash: 4.18.1
-      nanoid: 3.3.8
+      nanoid: 3.3.18
       xml2js: 0.6.2
     transitivePeerDependencies:
       - '@babel/preset-env'
@@ -5003,14 +5007,14 @@ snapshots:
       lodash: 4.18.1
       yaml: 2.9.0
 
-  '@usebruno/js@0.50.0(debug@4.4.3(supports-color@7.2.0))':
+  '@usebruno/js@0.50.0(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0)':
     dependencies:
       '@usebruno/common': 0.24.0
       '@usebruno/query': 0.2.2
       ajv: 8.20.0
       ajv-formats: 2.1.1(ajv@8.20.0)
       atob: 2.1.2
-      axios: 1.16.0(debug@4.4.3(supports-color@7.2.0))
+      axios: 1.18.0(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0)
       btoa: 1.2.1
       chai: 4.5.0
       chai-string: 1.6.0(chai@4.5.0)
@@ -5021,7 +5025,7 @@ snapshots:
       jsonwebtoken: 9.0.3
       lodash: 4.18.1
       moment: 2.30.1
-      nanoid: 3.3.8
+      nanoid: 3.3.18
       node-fetch: 2.7.0
       path: 0.12.7
       quickjs-emscripten: 0.32.0
@@ -5033,6 +5037,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
       - encoding
+      - supports-color
 
   '@usebruno/lang@0.38.0':
     dependencies:
@@ -5056,7 +5061,7 @@ snapshots:
       '@smithy/node-http-handler': 4.5.3
       '@types/qs': 6.15.1
       '@usebruno/common': 0.24.0
-      axios: 1.16.0(debug@4.4.3(supports-color@7.2.0))
+      axios: 1.18.0(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0)
       debug: 4.4.3(supports-color@7.2.0)
       google-protobuf: 4.0.2
       grpc-js-reflection-client: 1.4.1(@grpc/grpc-js@1.14.4)
@@ -5076,7 +5081,7 @@ snapshots:
 
   '@usebruno/schema@0.28.0':
     dependencies:
-      nanoid: 3.3.8
+      nanoid: 3.3.18
       yup: 0.32.11
 
   acorn-jsx@5.3.2(acorn@8.18.0):
@@ -5084,6 +5089,12 @@ snapshots:
       acorn: 8.18.0
 
   acorn@8.18.0: {}
+
+  agent-base@6.0.2(supports-color@7.2.0):
+    dependencies:
+      debug: 4.4.3(supports-color@7.2.0)
+    transitivePeerDependencies:
+      - supports-color
 
   agent-base@7.1.4: {}
 
@@ -5208,32 +5219,35 @@ snapshots:
     dependencies:
       possible-typed-array-names: 1.1.0
 
-  aws4-axios@3.4.0(axios@1.16.0(debug@4.4.3(supports-color@7.2.0))):
+  aws4-axios@3.4.0(axios@1.18.0(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0)):
     dependencies:
       '@aws-sdk/client-sts': 3.1113.0
       aws4: 1.13.2
-      axios: 1.16.0(debug@4.4.3(supports-color@7.2.0))
+      axios: 1.18.0(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0)
 
   aws4@1.13.2: {}
 
   axe-core@4.13.0: {}
 
-  axios-ntlm@1.4.6(debug@4.4.3(supports-color@7.2.0)):
+  axios-ntlm@1.4.6(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0):
     dependencies:
-      axios: 1.16.0(debug@4.4.3(supports-color@7.2.0))
+      axios: 1.18.0(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0)
       des.js: 1.1.0
       dev-null: 0.1.1
       js-md4: 0.3.2
     transitivePeerDependencies:
       - debug
+      - supports-color
 
-  axios@1.16.0(debug@4.4.3(supports-color@7.2.0)):
+  axios@1.18.0(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0):
     dependencies:
       follow-redirects: 1.16.0(debug@4.4.3(supports-color@7.2.0))
       form-data: 4.0.6
+      https-proxy-agent: 5.0.1(supports-color@7.2.0)
       proxy-from-env: 2.1.0
     transitivePeerDependencies:
       - debug
+      - supports-color
 
   axobject-query@4.1.0: {}
 
@@ -5962,14 +5976,6 @@ snapshots:
     dependencies:
       is-callable: 1.2.7
 
-  form-data@4.0.4:
-    dependencies:
-      asynckit: 0.4.0
-      combined-stream: 1.0.8
-      es-set-tostringtag: 2.1.0
-      hasown: 2.0.4
-      mime-types: 2.1.35
-
   form-data@4.0.6:
     dependencies:
       asynckit: 0.4.0
@@ -6129,6 +6135,13 @@ snapshots:
   http-proxy-agent@7.0.2(supports-color@7.2.0):
     dependencies:
       agent-base: 7.1.4
+      debug: 4.4.3(supports-color@7.2.0)
+    transitivePeerDependencies:
+      - supports-color
+
+  https-proxy-agent@5.0.1(supports-color@7.2.0):
+    dependencies:
+      agent-base: 6.0.2(supports-color@7.2.0)
       debug: 4.4.3(supports-color@7.2.0)
     transitivePeerDependencies:
       - supports-color
@@ -6591,8 +6604,6 @@ snapshots:
   nanoclone@0.2.1: {}
 
   nanoid@3.3.18: {}
-
-  nanoid@3.3.8: {}
 
   napi-postinstall@0.3.4: {}
 
