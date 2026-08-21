@@ -44,6 +44,8 @@ coverage/
 .turbo/
 playwright-report/
 test-results/
+lighthouse-report.json
+lighthouse*.json
 
 # Vercel
 .vercel
