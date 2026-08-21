@@ -110,9 +110,27 @@ jobs:
       - run: pnpm test:api
       - name: Restart server for rate-limit test
         run: |
+          set -euo pipefail
+          if command -v fuser >/dev/null 2>&1; then
+            fuser -k 3000/tcp || true
+          fi
           pkill -f "next start" || true
-          sleep 2
+          pkill -f "next-server" || true
+          for i in $(seq 1 20); do
+            if ! curl -sf http://localhost:3000 > /dev/null; then
+              echo "Port 3000 is free"
+              break
+            fi
+            echo "Waiting for previous server to stop..."
+            sleep 1
+            if [ "$i" -eq 20 ]; then
+              echo "Previous server still responding on :3000"
+              exit 1
+            fi
+          done
           pnpm start &
+        env:
+          CI: true
       - name: Wait for server (rate limit enabled)
         run: |
           for i in $(seq 1 60); do
