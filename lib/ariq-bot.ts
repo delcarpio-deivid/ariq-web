@@ -46,7 +46,7 @@ export const BOT_NODES: Record<string, BotNode> = {
     replies: [
       {
         id: "opt-demo",
-        label: "Ver Demo para Restaurantes/Ferreterías",
+        label: "Ver Demos",
         next: "demo",
       },
       {
@@ -63,7 +63,7 @@ export const BOT_NODES: Record<string, BotNode> = {
   },
   demo: {
     id: "demo",
-    text: "Perfecto. Tenemos demos pensadas para restaurantes (pedidos y carta por WhatsApp) y ferreterías (stock y cotizaciones). ¿Cuál se parece más a tu negocio?",
+    text: "Perfecto. Te armamos la demo según tu negocio. ¿Cuál se parece más al tuyo?",
     replies: [
       { id: "demo-rest", label: "Restaurante", next: "demo-rest-qualify" },
       { id: "demo-ferr", label: "Ferretería", next: "demo-ferr-qualify" },
