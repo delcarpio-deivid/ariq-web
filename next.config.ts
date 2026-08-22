@@ -1,9 +1,12 @@
 import type { NextConfig } from "next";
 
+const isDev = process.env.NODE_ENV === "development";
+
+// React needs 'unsafe-eval' in development for callstack reconstruction; never in production.
 const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
   "img-src 'self' data: blob:",
-  "script-src 'self' 'unsafe-inline'",
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
   "style-src 'self' 'unsafe-inline'",
   "font-src 'self'",
   "object-src 'none'",
