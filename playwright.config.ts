@@ -66,5 +66,10 @@ export default defineConfig({
         url: "http://localhost:3000",
         reuseExistingServer: !isCI,
         timeout: isCI ? 180_000 : 60_000,
+        env: {
+          ...process.env,
+          // Keep http://localhost assets on HTTP so WebKit can hydrate (see next.config.ts).
+          DISABLE_CSP_UPGRADE: "true",
+        },
       },
 });
