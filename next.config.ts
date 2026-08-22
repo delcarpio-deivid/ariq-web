@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const isDev = process.env.NODE_ENV === "development";
+// Playwright serves http://localhost; WebKit upgrades those asset URLs to https and never hydrates.
+const disableUpgradeInsecure =
+  isDev || process.env.DISABLE_CSP_UPGRADE === "true";
 
 // React needs 'unsafe-eval' in development for callstack reconstruction; never in production.
 const CONTENT_SECURITY_POLICY = [
@@ -13,7 +16,7 @@ const CONTENT_SECURITY_POLICY = [
   "base-uri 'self'",
   "form-action 'self'",
   "frame-ancestors 'none'",
-  "upgrade-insecure-requests",
+  ...(disableUpgradeInsecure ? [] : ["upgrade-insecure-requests"]),
 ].join("; ");
 
 const securityHeaders = [

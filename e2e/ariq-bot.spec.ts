@@ -18,12 +18,17 @@ test("ARIQ Bot preview y calificación de precios cierran en WhatsApp Pro", asyn
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
 
+  // Client widget hydrates after SSR; WebKit is slower than Chromium.
+  await expect(page.locator('[data-ariq-chat-ready="true"]')).toBeVisible();
+
   const preview = page.getByRole("button", {
     name: "Abrir chat de ARIQ Bot: ¿En qué te ayudo hoy?",
   });
   await expect(preview).toBeVisible();
 
-  await preview.click();
+  await page
+    .getByRole("button", { name: "Abrir chat de ARIQ Bot, 1 mensaje nuevo" })
+    .click();
 
   const dialog = page.getByRole("dialog", { name: "Chat de ARIQ Bot" });
   await expect(dialog).toBeVisible();

@@ -45,12 +45,17 @@ export function AriqChatWidget() {
   const [messages, setMessages] = useState<ChatMessage[]>(() => [
     createMessage("bot", BOT_NODES[WELCOME_NODE_ID].text),
   ]);
+  const rootRef = useRef<HTMLDivElement>(null);
   const scrollerRef = useRef<HTMLDivElement>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
   const typingTimerRef = useRef<number | null>(null);
 
   const node = getBotNode(nodeId) ?? BOT_NODES[WELCOME_NODE_ID];
   const showPreview = !open && !previewDismissed;
+
+  useEffect(() => {
+    rootRef.current?.setAttribute("data-ariq-chat-ready", "true");
+  }, []);
 
   useEffect(() => {
     const el = scrollerRef.current;
@@ -147,14 +152,17 @@ export function AriqChatWidget() {
   const replies = node.replies ?? [];
 
   return (
-    <div className="pointer-events-none fixed right-4 bottom-4 z-50 flex flex-col items-end gap-3 sm:right-6 sm:bottom-6">
+    <div
+      ref={rootRef}
+      className="fixed right-4 bottom-4 z-50 flex flex-col items-end gap-3 sm:right-6 sm:bottom-6"
+    >
       {open ? (
         <section
           id={panelId}
           role="dialog"
           aria-modal="false"
           aria-label="Chat de ARIQ Bot"
-          className="pointer-events-auto flex h-[min(520px,calc(100dvh-7.5rem))] w-[min(100vw-2rem,360px)] flex-col overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-brand-primary/10"
+          className="flex h-[min(520px,calc(100dvh-7.5rem))] w-[min(100vw-2rem,360px)] flex-col overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-brand-primary/10"
         >
           <header className="flex items-center gap-3 bg-brand-primary px-4 py-3">
             <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-brand-accent text-brand-primary">
@@ -233,7 +241,7 @@ export function AriqChatWidget() {
       ) : null}
 
       {showPreview ? (
-        <div className="pointer-events-auto flex max-w-[min(100vw-5.5rem,260px)] items-start gap-1">
+        <div className="flex max-w-[min(100vw-5.5rem,260px)] items-start gap-1">
           <button
             type="button"
             onClick={openChat}
@@ -261,7 +269,7 @@ export function AriqChatWidget() {
       <button
         type="button"
         onClick={() => (open ? setOpen(false) : openChat())}
-        className="pointer-events-auto relative inline-flex size-14 items-center justify-center rounded-2xl bg-brand-accent text-brand-primary shadow-md hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary"
+        className="relative inline-flex size-14 items-center justify-center rounded-2xl bg-brand-accent text-brand-primary shadow-md hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary"
         aria-expanded={open}
         aria-controls={panelId}
         aria-label={
