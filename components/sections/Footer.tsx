@@ -13,7 +13,7 @@ export function Footer() {
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-8 text-center">
         <a
           href="#"
-          className="inline-flex min-h-11 items-center gap-3 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-brand-primary"
+          className="inline-flex min-h-11 items-center gap-3 rounded-xl border border-white/20 bg-white/5 px-4 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-brand-primary"
           aria-label="ARIQ Labs — inicio"
         >
           <Image
