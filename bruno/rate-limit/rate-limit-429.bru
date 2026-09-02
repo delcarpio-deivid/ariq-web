@@ -1,0 +1,56 @@
+meta {
+  name: Rate limit 429 on sixth POST
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/lead
+  body: json
+  auth: none
+}
+
+headers {
+  content-type: application/json
+}
+
+body:json {
+  {
+    "nombre": "Rate Limit Probe",
+    "telefono": "987654321",
+    "paquete": "pro"
+  }
+}
+
+script:pre-request {
+  const baseUrl = bru.getEnvVar("baseUrl");
+  const payload = {
+    nombre: "Rate Limit Probe",
+    telefono: "987654321",
+    paquete: "pro",
+  };
+
+  for (let i = 1; i <= 5; i += 1) {
+    const response = await bru.sendRequest({
+      url: `${baseUrl}/api/lead`,
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      data: payload,
+    });
+    expect(response.status).to.equal(202);
+  }
+}
+
+tests {
+  test("sixth POST returns 429 Too Many Requests", function() {
+    expect(res.status).to.equal(429);
+  });
+
+  test("includes rate limit error message", function() {
+    expect(res.body.error).to.include("Demasiadas solicitudes");
+  });
+
+  test("includes Retry-After header", function() {
+    expect(res.headers["retry-after"]).to.exist;
+  });
+}

@@ -1,0 +1,21 @@
+meta {
+  name: GET method not allowed
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/lead
+  body: none
+  auth: none
+}
+
+tests {
+  test("returns 405 Method Not Allowed", function() {
+    expect(res.status).to.equal(405);
+  });
+
+  test("reports method not allowed error", function() {
+    expect(res.body.error).to.equal("Method Not Allowed");
+  });
+}

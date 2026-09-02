@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+  <!-- Top tier: mirrored hollow hooks, 45° bevels, gap ~x=57.5–62.5 -->
+  <path fill="#0B0F19" d="M2.3 0.5h55.2v32L44.2 45.8V12.6H14.2V19.4L2.3 32.5V0.5z"/>
+  <path fill="#0B0F19" d="M117.7 0.5H62.5v32L75.8 45.8V12.6H105.8V19.4L117.7 32.5V0.5z"/>
+  <!-- Middle tier: thick 45° chevron with horizontal feet, split at x=60 -->
+  <path fill="#0B0F19" d="M60 38.6L9.9 92.7H23.7L60 54.8Z"/>
+  <path fill="#10B981" d="M60 38.6L110.1 92.7H96.3L60 54.8Z"/>
+  <!-- Bottom tier: circuit branches (under rings) -->
+  <path stroke="#0B0F19" stroke-width="5" stroke-linecap="round" d="M53 91L32 104"/>
+  <path stroke="#10B981" stroke-width="5" stroke-linecap="round" d="M60 90V117"/>
+  <path stroke="#10B981" stroke-width="5" stroke-linecap="round" d="M67 91L88 104"/>
+  <!-- Hollow nodes -->
+  <circle cx="60" cy="80.3" r="7.2" fill="none" stroke="#10B981" stroke-width="5"/>
+  <circle cx="26.4" cy="110.1" r="5.9" fill="none" stroke="#0B0F19" stroke-width="5"/>
+  <circle cx="93.6" cy="110.1" r="5.9" fill="none" stroke="#10B981" stroke-width="5"/>
+</svg>

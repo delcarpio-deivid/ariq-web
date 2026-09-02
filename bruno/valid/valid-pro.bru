@@ -1,0 +1,38 @@
+meta {
+  name: Valid Pro
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/lead
+  body: json
+  auth: none
+}
+
+headers {
+  content-type: application/json
+}
+
+body:json {
+  {
+    "nombre": "María López",
+    "telefono": "987654321",
+    "paquete": "pro",
+    "negocio": "Cafetería Centro"
+  }
+}
+
+tests {
+  test("returns 202 Accepted", function() {
+    expect(res.status).to.equal(202);
+  });
+
+  test("includes whatsappUrl with lead details", function() {
+    expect(res.body.whatsappUrl).to.be.a("string");
+    expect(res.body.whatsappUrl).to.include("wa.me");
+    const decoded = decodeURIComponent(res.body.whatsappUrl);
+    expect(decoded).to.include("María López");
+    expect(decoded).to.include("paquete Pro");
+  });
+}

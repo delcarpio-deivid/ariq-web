@@ -42,6 +42,10 @@ yarn-debug.log*
 yarn-error.log*
 coverage/
 .turbo/
+playwright-report/
+test-results/
+lighthouse-report.json
+lighthouse*.json
 
 # Vercel
 .vercel
