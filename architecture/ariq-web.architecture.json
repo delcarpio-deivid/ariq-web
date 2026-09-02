@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "ARIQ Labs — runtime de la landing",
+    "output": "ariq-web.architecture.html",
+    "quality_profile": "showcase",
+    "legend": {
+      "mode": "auto",
+      "entries": {
+        "frontend": { "label": "Frontend" },
+        "backend": { "label": "Backend" },
+        "security": { "label": "Seguridad" },
+        "external": { "label": "Externo" }
+      }
+    },
+    "views": [
+      {
+        "id": "conversion",
+        "label": "Camino de conversión",
+        "focus": ["visitante", "landing", "bot", "whatsapp"],
+        "note": "Hero, precios, footer y bot abren wa.me con el mensaje listo."
+      },
+      {
+        "id": "api-captura",
+        "label": "Captura validada",
+        "focus": ["visitante", "landing", "api-lead", "rate-limit", "lead-provider", "whatsapp"],
+        "note": "POST /api/lead limita, valida con Zod y responde 202 con whatsappUrl."
+      },
+      {
+        "id": "bot-handoff",
+        "label": "Handoff del bot",
+        "focus": ["landing", "bot", "whatsapp"],
+        "note": "El widget califica el rubro y entrega el chat a WhatsApp."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "visitante",
+      "type": "external",
+      "label": "Visitante",
+      "sublabel": "Browser / pyme",
+      "pos": [48, 270],
+      "size": [140, 64]
+    },
+    {
+      "id": "landing",
+      "type": "frontend",
+      "label": "Landing Next.js",
+      "sublabel": "App Router",
+      "brand": "next-js",
+      "pos": [280, 270],
+      "size": [170, 64]
+    },
+    {
+      "id": "bot",
+      "type": "frontend",
+      "label": "ARIQ Bot",
+      "sublabel": "Widget cliente",
+      "pos": [280, 108],
+      "size": [170, 64]
+    },
+    {
+      "id": "whatsapp",
+      "type": "external",
+      "label": "WhatsApp",
+      "sublabel": "wa.me",
+      "brand": "whatsapp",
+      "pos": [920, 270],
+      "size": [150, 64]
+    },
+    {
+      "id": "api-lead",
+      "type": "backend",
+      "label": "POST /api/lead",
+      "sublabel": "Route Handler",
+      "pos": [280, 460],
+      "size": [170, 64]
+    },
+    {
+      "id": "rate-limit",
+      "type": "security",
+      "label": "Rate limit",
+      "sublabel": "5 req / 60s",
+      "pos": [530, 460],
+      "size": [150, 64]
+    },
+    {
+      "id": "lead-provider",
+      "type": "backend",
+      "label": "Lead provider",
+      "sublabel": "Zod + URL",
+      "pos": [760, 460],
+      "size": [160, 64]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "ariq-web · Next.js 16",
+      "wraps": ["landing", "bot", "api-lead", "rate-limit", "lead-provider"]
+    },
+    {
+      "kind": "security-group",
+      "label": "POST /api/lead",
+      "wraps": ["api-lead", "rate-limit", "lead-provider"]
+    }
+  ],
+  "connections": [
+    {
+      "id": "visitante-to-landing",
+      "from": "visitante",
+      "to": "landing",
+      "label": "HTTPS",
+      "variant": "emphasis"
+    },
+    {
+      "id": "landing-to-whatsapp",
+      "from": "landing",
+      "to": "whatsapp",
+      "label": "CTA wa.me",
+      "variant": "emphasis"
+    },
+    {
+      "id": "landing-to-bot",
+      "from": "landing",
+      "to": "bot",
+      "label": "widget",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "id": "bot-to-whatsapp",
+      "from": "bot",
+      "to": "whatsapp",
+      "label": "handoff",
+      "variant": "dashed",
+      "fromSide": "right",
+      "toSide": "top"
+    },
+    {
+      "id": "landing-to-api",
+      "from": "landing",
+      "to": "api-lead",
+      "label": "POST JSON",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 24
+    },
+    {
+      "id": "api-to-rate-limit",
+      "from": "api-lead",
+      "to": "rate-limit",
+      "label": "IP"
+    },
+    {
+      "id": "rate-limit-to-provider",
+      "from": "rate-limit",
+      "to": "lead-provider",
+      "label": "Zod"
+    },
+    {
+      "id": "provider-to-whatsapp",
+      "from": "lead-provider",
+      "to": "whatsapp",
+      "label": "whatsappUrl 202",
+      "fromSide": "top",
+      "toSide": "bottom"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Conversión",
+      "items": [
+        "Hero, precios y footer abren wa.me directo",
+        "ARIQ Bot califica el rubro y hace handoff",
+        "Sin CRM: el lead vive en el chat"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "API de captura",
+      "items": [
+        "POST /api/lead valida teléfono +51 y paquete",
+        "Rate limit en memoria: 5 solicitudes por minuto",
+        "Responde 202 con whatsappUrl; Bruno cubre el contrato"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Seguridad",
+      "items": [
+        "CSP, HSTS y X-Frame-Options DENY",
+        "Sin persistencia de leads en servidor",
+        "CI: path-guard, Playwright y Bruno"
+      ]
+    }
+  ]
+}
